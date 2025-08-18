@@ -1,3 +1,3 @@
-#Intership #Python #Language/Japanese #Python/Streamlit #API/Weather
+#Intership #Python/Streamlit #API/Weather
 # Introduction
 
