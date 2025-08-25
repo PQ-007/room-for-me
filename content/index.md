@@ -12,7 +12,7 @@ Welcome! This is my **collection of blogs, notes, ideas, and projects**.  I want
 
 [Lesson Notes] 
 
-- 🌱  — raw thoughts, quick connections  ![Lesson Notes]
+- 🌱  — raw thoughts, quick connections  [Lesson Notes]
 - 📚 [] — longer reflections and polished ideas  
 - ⚙ **Projects** — experiments, logs, and showcases  
 - 🔗 **Graph View** — explore connections visually  
