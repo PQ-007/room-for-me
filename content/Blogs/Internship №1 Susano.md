@@ -1,4 +1,4 @@
-#Internship  #CAD #Csharp/dotNet
+#Internship  #CAD #Csharp/dotNet #MN 
 ## Танилцуулга
 
 Миний дадлага хийсэн Сусано компани нь AutoCAD, Revit зэрэг **Computer Aided Drawing** төрлийн програм дээр нэмэлт plug-in болон бусад холбогдох tool хэрэгтэй бүтээгдэхүүний хөгжүүлэлтийг япон компаниудаас авч хийдэг. 
