@@ -1,3 +1,2 @@
-#Python
 ## Python とは
 
