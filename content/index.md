@@ -9,11 +9,10 @@ to see my growth, struggles, and remarkable moments — while also leveling up m
 
 ## ✨ What you’ll find here
 
-- 🌱 [[Blogs/index]] — raw thoughts, quick connections  
-- 📚 **Book Notes** — deeper reflections and learnings  
-- ⚙ **Projects** — experiments, logs, and showcases  
-- ✍ **Blogs** — stories, reflections, and technical writeups  
-- 🔗 **Graph View** — explore everything visually  
+- ✍ [[Blogs/index|Blogs]]  — stories, internship logs, edu series and review
+- 🌱 [[Lesson Notes/index|Lesson Notes]] — learning note, topic wrap up 
+- 📚 [[Book Notes/index|Book Notes]]— book log, idea wrap up
+- ⚙ [[Projects/index|Projects]] — experiments, logs, and showcases  
 
 ---
 
