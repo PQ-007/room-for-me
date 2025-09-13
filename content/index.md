@@ -1,31 +1,29 @@
 ---
-title: "Welcome to My Digital Garden"
-draft: false
+title: Welcome
 ---
-
-
-Welcome! This is my **collection of blogs, notes, ideas, and projects**.  I wanted to document my life fully within in this internet corner. To see my growth, struggle, to keep remarkable moments of my life, and to level up my language skills, I decided to write blogs, documentations. 
+This is my **collection of blogs, notes, ideas, and projects**.  
+I wanted to document my life fully within this internet corner:  
+to see my growth, struggles, and remarkable moments — while also leveling up my language skills.  
 
 ---
 
 ## ✨ What you’ll find here
 
-[Lesson Notes] 
-
-- 🌱  — raw thoughts, quick connections  [Lesson Notes]
-- 📚 [] — longer reflections and polished ideas  
+- 🌱 [[Blogs/index]] — raw thoughts, quick connections  
+- 📚 **Book Notes** — deeper reflections and learnings  
 - ⚙ **Projects** — experiments, logs, and showcases  
-- 🔗 **Graph View** — explore connections visually  
+- ✍ **Blogs** — stories, reflections, and technical writeups  
+- 🔗 **Graph View** — explore everything visually  
 
 ---
 
 ## 🚪 Enter the Garden
 
-👉 Start exploring from [the graph view](../graph)  
-or check out the [latest notes](../tags/notes).
+👉 Start exploring from the [Graph View](../graph)  
+or check out the [Latest Notes](../tags/notes).  
 
 ---
 
-<footer>
+<footer style="text-align:center; font-size:0.9em; opacity:0.7;">
 © 2025 Bilguuntushig · Built with Quartz
 </footer>
