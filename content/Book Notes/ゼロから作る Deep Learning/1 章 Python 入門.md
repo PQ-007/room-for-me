@@ -1,3 +1,3 @@
-#Python #Book/DeapLearning 
+#Python
 ## Python とは
 
