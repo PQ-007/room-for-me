@@ -35,7 +35,6 @@ Python татахад хэд хэдэн арга байдаг. Эдгээрий�
 >>> 3 ** 2
 9
 ```
-
 ### データ型
 
 整数 (integer), 小数 (float), 文字列 (string) зэрэг өгөгдлийн төрөл бий. type() функцээр аливаа өгөгдөл хувьсагчийн төрлийг шалгаж болдог.
@@ -48,6 +47,48 @@ Python татахад хэд хэдэн арга байдаг. Эдгээрий�
 >>> type("hello")
 <class 'str'>
 ```
+### 変数
 
+Python нь 動的型付き言語 динамик байдлаар төрлөө сольдог хэл. Динамик гэдэг нь хувьсагчийн төрөл автоматаар хувирч болдог гэсэн үг. 
+### リスト、配列、タプル
 
- ### 変数
+|Feature|List|Array|Tuple|
+|---|---|---|---|
+|Mutability|Mutable|Mutable|Immutable|
+|Data Type|Can store different types|Stores elements of the same type|Can store different types|
+|Ordered|Yes|Yes|Yes|
+|Performance|Slower for numerical operations|Faster for numerical operations|Faster than lists (due to immutability)|
+|Memory Efficiency|Less efficient|More efficient for large data|More memory-efficient than lists|
+|Usage|General-purpose collection|Numerical and homogeneous data|Fixed data, constants|
+|Syntax|[ ]|array()|( )|
+|Indexing|Supported|Supported|Supported|
+
+### ディクショナリ
+
+Индекс нь тэмдэгт байх түлхүүр утгын хос бүхий өгөгдлийн төрөл.
+
+```python
+>>> me = {'height':180} # ディクショナリを作成
+>>> me['height'] # 要素にアクセス
+180
+>>> me['weight'] = 70 # 新しい要素を追加
+>>> print(me)
+{'height': 180, 'weight': 70}
+```
+
+### 関数 (Function)
+
+Функц ингэж бичнэ.
+
+```python
+>>> def hello():
+... print("Hello World!")
+...
+>>> hello()
+Hello World
+```
+
+## Python スクリプトファイル
+
+#### クラス
+
