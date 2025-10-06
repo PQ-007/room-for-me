@@ -1,5 +1,5 @@
 ---
-title: future-hub platform overview
+title: FutureHub overview
 date: 2025-10-05
 tags:
   - "#NextJS"
@@ -9,4 +9,6 @@ tags:
 language: mn
 ---
 # Ерөнхий танилцуулга 
+
+
 

@@ -110,6 +110,7 @@ Expands your audience globally, including universities and peers in Japan and Mo
 
 ## Folder Structure
 
+```
 /life-logger
 ├── app/
 │   ├── layout.tsx          → Global layout
@@ -130,3 +131,5 @@ Expands your audience globally, including universities and peers in Japan and Mo
 ├── tailwind.config.ts
 ├── next.config.js
 └── .env.local              → Supabase keys, NEXT_PUBLIC_ vars
+
+```
