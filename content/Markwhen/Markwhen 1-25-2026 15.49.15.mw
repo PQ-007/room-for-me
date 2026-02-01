@@ -1,0 +1,46 @@
+
+section Одоогийн байдал #now
+  2026-01-25: Одоогийн ажил: Website Article модуль дээр хөгжүүлэлт явж байна #status
+  2026-01-25: Зорилго: 3 сар гэхэд Website production deploy + бүрэн ажиллагаатай болгох #goal
+  2026-01-25: Дараагийн зорилго: Оюутнуудын туршилт (feedback loop), 5 сар хүртэл Mobile app + бичвэр дуусгах #goal
+endSection
+
+section 1-р сарын үлдсэн хугацаа – Article модулийг “production-ready” болгох #jan
+  2026-01-25/2026-01-31: Article CRUD (create/edit/publish), draft workflow, tag, status цэгцлэх #article
+  2026-01-25/2026-01-31: Auth + RLS/permissions (editor/owner/admin) шалгаж дуусгах #auth #security
+  2026-01-25/2026-01-31: UI polish: унших page, TOC, code block, share/save, loading/error state #ux
+endSection
+
+section 2 сар – Website-г “бүрэн бүтээгдэхүүн” болгох (core + quality) #feb
+  2026-02-01/2026-02-07: Article search + filter (tag/lang/status), basic ranking #search
+  2026-02-01/2026-02-07: Comment/Reaction (эсвэл эхний хувилбар: reactions only) #social
+  2026-02-08/2026-02-14: Dictionary / Definitions (article дээрх үг хадгалах), minimal UI #dictionary
+  2026-02-08/2026-02-14: Flashcard generation pipeline (article → cards) MVP #flashcards
+  2026-02-15/2026-02-21: Sync contract: website ↔ app өгөгдлийн бүтэц (API/DB schema) тогтоох #sync
+  2026-02-15/2026-02-21: Logging/monitoring + error tracking (production-д зайлшгүй) #ops
+  2026-02-22/2026-02-29: E2E тестийн үндэс, seed data, permission regression test #testing
+endSection
+
+section 3 сар – Production Deploy + Туршилт эхлүүлэх #mar
+  2026-03-01/2026-03-07: Deployment preparation (env, migrations, storage, domain), staging deploy #deploy
+  2026-03-08/2026-03-14: Production deploy (Website v1), release notes, backup/restore plan #deploy
+  2026-03-08/2026-03-14: “Оюутан туршилт v1” эхлүүлэх: 10–30 хэрэглэгч, task list, feedback form #usertest
+  2026-03-15/2026-03-21: Feedback triage: top 10 bug + top 5 UX pain шийдэх #iteration
+  2026-03-22/2026-03-31: Multilingual UI MVP (MN/JP/EN toggle), content language metadata #i18n
+endSection
+
+section 4 сар – Туршилт үргэлжлүүлэх + Mobile App үндсэн бүтэц #apr
+  2026-04-01/2026-04-07: User testing wave 2 (илүү олон хэрэглэгч), analytics + retention хэмжих #usertest
+  2026-04-01/2026-04-14: Mobile App scaffold (Expo), navigation, auth, basic profile #mobile
+  2026-04-08/2026-04-14: App: Flashcard list/deck view + local cache #mobile #flashcards
+  2026-04-15/2026-04-21: App: SRS (review session), TTS, daily streak MVP #srs
+  2026-04-22/2026-04-30: App ↔ Website sync (login token, pull/push cards, conflict rules) #sync
+endSection
+
+section 5 сар – Mobile дуусгах + Бичвэр/тайлан эцэслэх #may
+  2026-05-01/2026-05-07: App QA + performance + crash fixes #testing
+  2026-05-01/2026-05-14: OCR/Dictionary (хэрэв app-д заавал бол MVP), эсвэл website дээр үлдээж тайландаа тайлбарлах #ocr
+  2026-05-08/2026-05-14: App release build (internal testing), docs, onboarding #release
+  2026-05-01/2026-05-20: Бичвэр: оршил/судалгаа/архитектур/хэрэгжүүлэлт/туршилт/дүн #thesis
+  2026-05-21/2026-05-31: Эцсийн бэлтгэл: demo сценар, слайд, хамгаалалтын асуулт-бэлэн хариулт #defense
+endSection
