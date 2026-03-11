@@ -26,13 +26,18 @@ kanban-plugin: board
 ## Doing
 
 - [ ] Main menu page layout improvement
-	- [x] Layout ✅ 2026-02-28
+	- [ ] Layout
 	- [ ] Content visualization modes
 	- [x] UI, UX ✅ 2026-02-28
 	- [ ] Recommendation algorithm
 - [ ] Profile module
-	- [ ] UI layout
-	- [ ] Link API data retrieval
+	- [x] UI layout ✅ 2026-03-11
+	- [x] Link API data retrieval ✅ 2026-03-11
+	- [ ] Super List component for article, and projects🛫
+- [ ] Discussions module
+	- [ ] Use super list view component
+	- [ ] Write public rule
+	- [ ] Implement report system
 
 
 ## Done
