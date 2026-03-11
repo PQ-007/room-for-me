@@ -16,6 +16,17 @@ kanban-plugin: board
 	- [ ] decide points for act
 - [ ] Project module
 - [ ] Full site language translation
+	- [ ] profile module
+	- [ ] main menu
+	- [ ] projects module
+	- [ ] sign in page
+	- [ ] visual module
+	- [ ] dictionary module
+	- [ ] discussions module
+	- [ ] point shop page
+	- [ ] contest module
+	- [ ] library module
+	- [ ] flashcard module
 - [ ] Lesson CS topic Visual module
 	- [ ] retrieval of lesson data
 	- [ ] roadmap building
