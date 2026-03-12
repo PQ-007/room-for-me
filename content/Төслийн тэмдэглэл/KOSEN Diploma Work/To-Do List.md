@@ -46,7 +46,7 @@ kanban-plugin: board
 	- [x] Link API data retrieval ✅ 2026-03-11
 	- [ ] Super List component for article, and projects🛫
 - [ ] Discussions module
-	- [ ] Use super list view component
+	- [x] Use super list view component ✅ 2026-03-12
 	- [ ] Write public rule
 	- [ ] Implement report system
 
