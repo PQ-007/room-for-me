@@ -49,6 +49,12 @@ kanban-plugin: board
 	- [x] Use super list view component ✅ 2026-03-12
 	- [ ] Write public rule
 	- [ ] Implement report system
+- [ ] Article create page
+	- [ ] tag recommendation
+	- [ ] draft or published identifier
+	- [ ] markdown upload button
+	- [ ] Save initial data check list
+	- [ ]
 
 
 ## Done
