@@ -8,10 +8,10 @@ to see my growth, struggles, and remarkable moments — while also leveling up m
 ---
 ## ✨ What you’ll find here
 
-- ✍ [[Блог/index|Blogs]]  — stories, internship logs, educational series and review
-- 🌱 [[Хичээлийн тэмдэглэл/index|Lesson Notes]] — learning note, topic wrap up 
-- 📚 [[Номын тэмдэглэл/index|Book Notes]]— book log, idea wrap up
-- ⚙ [[Төслийн тэмдэглэл/index|Projects]] — experiments, logs, and showcases  
+- ✍ [[Blog/index|Blogs]]  — stories, internship logs, educational series and review
+- 🌱 [[Lesson Note/index|Lesson Notes]] — learning note, topic wrap up 
+- 📚 [[Book Note/index|Book Notes]]— book log, idea wrap up
+- ⚙ [[Project Log/index|Projects]] — experiments, logs, and showcases  
 
 ---
 

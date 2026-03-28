@@ -41,20 +41,15 @@ kanban-plugin: board
 	- [ ] Content visualization modes
 	- [x] UI, UX ✅ 2026-02-28
 	- [ ] Recommendation algorithm
-- [ ] Profile module
-	- [x] UI layout ✅ 2026-03-11
-	- [x] Link API data retrieval ✅ 2026-03-11
-	- [ ] Super List component for article, and projects🛫
 - [ ] Discussions module
 	- [x] Use super list view component ✅ 2026-03-12
 	- [ ] Write public rule
 	- [ ] Implement report system
 - [ ] Article create page
-	- [ ] tag recommendation
-	- [ ] draft or published identifier
+	- [x] tag recommendation ✅ 2026-03-26
+	- [x] draft or published identifier ✅ 2026-03-26
 	- [ ] markdown upload button
-	- [ ] Save initial data check list
-	- [ ]
+	- [x] Save initial data check list ✅ 2026-03-26
 
 
 ## Done
@@ -65,6 +60,18 @@ kanban-plugin: board
 	- [x] UI ✅ 2026-03-06
 	- [x] API supabase integration ✅ 2026-03-06
 	- [ ] Initial 1000 words data
+- [x] Profile module ✅ 2026-03-26
+	- [x] UI layout ✅ 2026-03-11
+	- [x] Link API data retrieval ✅ 2026-03-11
+	- [x] Super List component for article, and projects🛫 ✅ 2026-03-26
+
+
+## Issue
+
+- [ ] Poll ugch bolohgu baisan
+- [ ] Web space dynamic
+- [ ] Mongol bichig asdf
+- [ ] profile image not uploading
 
 
 ***
@@ -88,6 +95,6 @@ kanban-plugin: board
 
 %% kanban:settings
 ```
-{"kanban-plugin":"board","list-collapse":[false,false,false]}
+{"kanban-plugin":"board","list-collapse":[false,false,false,false]}
 ```
 %%
