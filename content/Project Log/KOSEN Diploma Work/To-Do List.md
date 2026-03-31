@@ -14,12 +14,11 @@ kanban-plugin: board
 - [ ] Library module
 - [ ] Ranking system implementation
 	- [ ] decide points for act
-- [ ] Project module
 - [ ] Full site language translation
 	- [ ] profile module
 	- [ ] main menu
 	- [ ] projects module
-	- [ ] sign in page
+	- [x] sign in page ✅ 2026-03-30
 	- [ ] visual module
 	- [ ] dictionary module
 	- [ ] discussions module
@@ -45,11 +44,11 @@ kanban-plugin: board
 	- [x] Use super list view component ✅ 2026-03-12
 	- [ ] Write public rule
 	- [ ] Implement report system
-- [ ] Article create page
-	- [x] tag recommendation ✅ 2026-03-26
-	- [x] draft or published identifier ✅ 2026-03-26
-	- [ ] markdown upload button
-	- [x] Save initial data check list ✅ 2026-03-26
+	- [ ] Poll system
+	- [ ] image uploader issue
+- [ ] Project module
+	- [ ] layout
+	- [ ] API
 
 
 ## Done
@@ -64,14 +63,22 @@ kanban-plugin: board
 	- [x] UI layout ✅ 2026-03-11
 	- [x] Link API data retrieval ✅ 2026-03-11
 	- [x] Super List component for article, and projects🛫 ✅ 2026-03-26
+- [x] Article create page ✅ 2026-03-30
+	- [x] tag recommendation ✅ 2026-03-26
+	- [x] draft or published identifier ✅ 2026-03-26
+	- [ ] markdown upload button
+	- [x] Save initial data check list ✅ 2026-03-26
+- [x] 1, 2, 3, not properly showing ✅ 2026-03-30
 
 
 ## Issue
 
-- [ ] Poll ugch bolohgu baisan
-- [ ] Web space dynamic
+- [x] Poll ugch bolohgu baisan ✅ 2026-03-30
+- [x] Web space dynamic ✅ 2026-03-30
 - [ ] Mongol bichig asdf
-- [ ] profile image not uploading
+- [x] profile image not uploading ✅ 2026-03-28
+- [x] cursor not visable issue ✅ 2026-03-30
+- [x] mdx components not cool ✅ 2026-03-30
 
 
 ***
