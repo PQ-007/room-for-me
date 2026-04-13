@@ -48,9 +48,14 @@ kanban-plugin: board
 	- [ ] Poll system
 	- [ ] image uploader issue
 - [ ] Project module
-	- [ ] new layout design UI
-	- [ ] one project demanding data example
-	- [ ] API
+	- [x] new layout design UI ✅ 2026-04-12
+	- [x] one project demanding data example ✅ 2026-04-12
+	- [x] API ✅ 2026-04-12
+	- [ ] software dev category
+	- [ ] limit for image upload per project up to 5
+	- [ ] separate content field for brief content
+	- [x] fit main page into create page ✅ 2026-04-12
+	- [ ] browse page
 
 
 ## Done
@@ -65,6 +70,7 @@ kanban-plugin: board
 	- [x] UI layout ✅ 2026-03-11
 	- [x] Link API data retrieval ✅ 2026-03-11
 	- [x] Super List component for article, and projects🛫 ✅ 2026-03-26
+	- [ ] remove certificate, add archievements
 - [x] Article create page ✅ 2026-03-30
 	
 	- [x] tag recommendation ✅ 2026-03-26
