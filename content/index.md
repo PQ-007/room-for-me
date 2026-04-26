@@ -11,7 +11,7 @@ to see my growth, struggles, and remarkable moments — while also leveling up m
 - ✍ [[Blog/index|Blogs]]  — stories, internship logs, educational series and review
 - 🌱 [[Lesson Note/index|Lesson Notes]] — learning note, topic wrap up 
 - 📚 [[Book Note/index|Book Notes]]— book log, idea wrap up
-- ⚙ [[Project Log/index|Projects]] — experiments, logs, and showcases  
+- ⚙ [[Project Log/index|Projects]] — experiments, logs, and showcases  new life
 
 ---
 
