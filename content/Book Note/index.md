@@ -1,5 +1,5 @@
 ---
-title: "Номын тэмдэглэл · Book Notes · 読書ノート"
+title: "Book Notes"
 date:
 tags:
 ---

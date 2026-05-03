@@ -1,5 +1,5 @@
 ---
-title: "Хичээлийн тэмдэглэл · Lesson Notes · 授業ノート"
+title: "Lesson Notes"
 date:
 tags:
 ---

@@ -1,28 +1,26 @@
 @use "./base.scss";
 
-// ── DESIGN TOKENS (supplement Quartz vars) ────────────────────────
+// Extra fonts: Noto Sans for Mongolian Cyrillic + Japanese fallback.
+// Inter (set as bodyFont in quartz.config.ts) covers Latin + full Cyrillic;
+// Noto Sans JP picks up Japanese glyphs; Noto Serif JP covers Japanese in headings.
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@500;700&display=swap");
+
+// ── DESIGN TOKENS ────────────────────────────────────────────────
 :root {
-  --rfm-serif:     var(--headerFont);
-  --rfm-sans:      var(--bodyFont);
-  --rfm-mono:      var(--codeFont);
-  --rfm-mongolian: 'Noto Sans Mongolian', 'Traditional Mongolian', 'Mongolian Baiti', serif;
+  --rfm-serif:  var(--headerFont), "Noto Serif JP", Georgia, serif;
+  --rfm-sans:   var(--bodyFont), "Noto Sans JP", system-ui, -apple-system, sans-serif;
+  --rfm-mono:   var(--codeFont), "JetBrains Mono", "Noto Sans JP", monospace;
   --rfm-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  // accent-soft derived from secondary
-  --rfm-accent-soft: color-mix(in srgb, var(--secondary) 15%, transparent);
+  --rfm-accent-soft: color-mix(in srgb, var(--secondary) 14%, transparent);
 }
 
-// ── TRADITIONAL MONGOLIAN SCRIPT ──────────────────────────────────
-.mng-script {
-  font-family: var(--rfm-mongolian);
-  writing-mode: vertical-lr;
-  text-orientation: mixed;
-  direction: ltr;
+// Apply the multilingual stack everywhere body text is rendered
+body {
+  font-family: var(--rfm-sans);
 }
 
-// ── HOMEPAGE: FULL-WIDTH OVERRIDE ─────────────────────────────────
-// When homepage hero is present, collapse the sidebar grid so the
-// hero can span the full content area.
+// ── HOMEPAGE: FULL-WIDTH OVERRIDE ────────────────────────────────
+// The hero spans the full content area on the index page only.
 body:has(article .home-hero),
 body:has(.page-content .home-hero) {
   .page > #quartz-body {
@@ -39,54 +37,68 @@ body:has(.page-content .home-hero) {
     display: none !important;
   }
 
-  // Widen the article to fill the column
   article {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 2rem;
   }
+
+  // Push hero up; remove default top spacing
+  .page-header {
+    padding-top: 1rem;
+  }
 }
 
-// ── HOMEPAGE: HERO ────────────────────────────────────────────────
+// ── FLOATING NAV BAR (homepage only, replaces sidebar nav) ───────
+// On the homepage, the language switcher + theme toggle floats top-right
+// like the design's nav bar.
+body:has(article .home-hero) {
+  // Hidden header is OK; nothing to add here for now.
+}
+
+// ── HOMEPAGE: HERO ───────────────────────────────────────────────
 .home-hero {
   position: relative;
-  padding: 5rem 0 3.5rem;
-  margin-bottom: 0;
+  padding: 4rem 0 3rem;
+  margin: 0 0 1rem;
   overflow: hidden;
+  isolation: isolate;
 
   // Subtle grid background
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
-    z-index: 0;
+    z-index: -1;
     background-image:
       linear-gradient(var(--lightgray) 1px, transparent 1px),
       linear-gradient(90deg, var(--lightgray) 1px, transparent 1px);
     background-size: 48px 48px;
-    opacity: 0.4;
+    opacity: 0.35;
     mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%);
     pointer-events: none;
   }
 
-  // Glow blobs
+  // Glow blob
   &::after {
-    content: '';
+    content: "";
     position: absolute;
-    bottom: -120px;
-    right: -80px;
-    z-index: 0;
-    width: 500px;
-    height: 500px;
+    bottom: -180px;
+    right: -120px;
+    z-index: -1;
+    width: 520px;
+    height: 520px;
     border-radius: 50%;
-    background: radial-gradient(circle, color-mix(in srgb, var(--secondary) 15%, transparent) 0%, transparent 70%);
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--secondary) 18%, transparent) 0%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
-  > * { position: relative; z-index: 1; }
-
   .hero-eyebrow {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 12px;
     font-family: var(--rfm-mono);
@@ -99,7 +111,7 @@ body:has(.page-content .home-hero) {
     animation: rfmFadeUp 0.6s 0.1s both;
 
     &::before {
-      content: '';
+      content: "";
       display: block;
       width: 28px;
       height: 1.5px;
@@ -111,7 +123,7 @@ body:has(.page-content .home-hero) {
 
   .hero-name {
     font-family: var(--rfm-serif);
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-size: clamp(2.6rem, 7vw, 5.5rem);
     font-weight: 700;
     line-height: 1.04;
     letter-spacing: -0.03em;
@@ -126,31 +138,13 @@ body:has(.page-content .home-hero) {
     }
   }
 
-  // Traditional Mongolian vertical name
-  .hero-name-mng {
-    display: none;
-    font-family: var(--rfm-mongolian);
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--dark);
-    margin-bottom: 1.5rem;
-    height: clamp(200px, 25vw, 340px);
-    opacity: 0;
-    animation: rfmFadeUp 0.7s 0.2s both;
-
-    em { color: var(--secondary); }
-  }
-
   .hero-tagline {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(1rem, 2vw, 1.2rem);
     color: var(--gray);
     font-weight: 300;
-    max-width: 520px;
+    max-width: 540px;
     line-height: 1.6;
-    margin: 0 0 2.5rem;
+    margin: 0 0 2.25rem;
     opacity: 0;
     animation: rfmFadeUp 0.7s 0.35s both;
   }
@@ -158,8 +152,8 @@ body:has(.page-content .home-hero) {
   .hero-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-bottom: 2.5rem;
+    gap: 0.5rem;
+    margin-bottom: 2.25rem;
     opacity: 0;
     animation: rfmFadeUp 0.7s 0.45s both;
   }
@@ -168,7 +162,7 @@ body:has(.page-content .home-hero) {
     font-family: var(--rfm-mono);
     font-size: 0.7rem;
     font-weight: 500;
-    padding: 5px 14px;
+    padding: 5px 13px;
     border-radius: 99px;
     background: color-mix(in srgb, var(--lightgray) 60%, var(--light));
     border: 1px solid var(--lightgray);
@@ -184,7 +178,7 @@ body:has(.page-content .home-hero) {
 
   .hero-cta {
     display: flex;
-    gap: 1rem;
+    gap: 0.85rem;
     flex-wrap: wrap;
     opacity: 0;
     animation: rfmFadeUp 0.7s 0.55s both;
@@ -195,7 +189,7 @@ body:has(.page-content .home-hero) {
     align-items: center;
     padding: 0.7rem 1.6rem;
     border-radius: 99px;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.02em;
     transition: all var(--rfm-transition);
@@ -227,58 +221,28 @@ body:has(.page-content .home-hero) {
       }
     }
   }
-
-  // Traditional Mongolian side panel
-  .mng-hero-panel {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    align-items: center;
-    gap: 8px;
-
-    &.visible { display: flex; }
-
-    .mng-vertical-text {
-      font-family: var(--rfm-mongolian);
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
-      font-size: 0.9rem;
-      line-height: 1.8;
-      color: var(--gray);
-      letter-spacing: 0.08em;
-      padding: 16px 8px;
-      border-left: 1.5px solid var(--lightgray);
-      height: 220px;
-    }
-
-    .mng-vertical-name {
-      font-family: var(--rfm-mongolian);
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: var(--secondary);
-      letter-spacing: 0.06em;
-      height: 180px;
-    }
-  }
 }
 
 @keyframes rfmFadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-// ── HOMEPAGE DIVIDER ──────────────────────────────────────────────
+// ── HOMEPAGE DIVIDER ─────────────────────────────────────────────
 .home-divider {
   height: 1px;
   background: var(--lightgray);
-  margin: 0 0 3rem;
+  margin: 0 0 2.5rem;
+  border: none;
 }
 
-// ── SECTION LABEL + TITLE ─────────────────────────────────────────
+// ── SECTION HEADERS ──────────────────────────────────────────────
 .section-label {
   font-family: var(--rfm-mono);
   font-size: 0.68rem;
@@ -290,15 +254,15 @@ body:has(.page-content .home-hero) {
 
 .section-title {
   font-family: var(--rfm-serif);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin: 0 0 2rem;
+  margin: 0 0 1.75rem;
   color: var(--dark);
 }
 
-// ── HOMEPAGE: WORK CARDS ──────────────────────────────────────────
+// ── HOMEPAGE: WORK CARDS ─────────────────────────────────────────
 .work-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -310,21 +274,26 @@ body:has(.page-content .home-hero) {
   background: color-mix(in srgb, var(--light) 60%, var(--lightgray));
   border: 1px solid var(--lightgray);
   border-radius: 16px;
-  padding: 1.75rem;
+  padding: 1.6rem;
   transition: all var(--rfm-transition);
   cursor: pointer;
   text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 40px color-mix(in srgb, var(--secondary) 10%, transparent);
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--secondary) 12%, transparent);
     border-color: var(--secondary);
 
-    .work-card-title { color: var(--secondary); }
+    .work-card-title {
+      color: var(--secondary);
+    }
   }
 
   .work-card-badge {
     display: inline-block;
+    align-self: flex-start;
     font-family: var(--rfm-mono);
     font-size: 0.65rem;
     font-weight: 500;
@@ -334,7 +303,7 @@ body:has(.page-content .home-hero) {
     border-radius: 99px;
     background: var(--rfm-accent-soft);
     color: var(--secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.9rem;
   }
 
   .work-card-title {
@@ -355,7 +324,7 @@ body:has(.page-content .home-hero) {
   }
 }
 
-// ── HOMEPAGE: LIBRARY GRID ────────────────────────────────────────
+// ── HOMEPAGE: LIBRARY GRID ───────────────────────────────────────
 .library-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -371,24 +340,26 @@ body:has(.page-content .home-hero) {
   display: flex;
   align-items: flex-start;
   gap: 0.9rem;
-  padding: 1.25rem 1.4rem;
+  padding: 1.2rem 1.4rem;
   border-radius: 14px;
   border: 1px solid var(--lightgray);
   background: color-mix(in srgb, var(--light) 80%, var(--lightgray));
   text-decoration: none !important;
-  transition: border-color var(--rfm-transition), background var(--rfm-transition), transform 0.15s;
+  transition: all var(--rfm-transition);
 
   &:hover {
     border-color: var(--secondary);
     background: var(--highlight);
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--secondary) 8%, transparent);
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--secondary) 10%, transparent);
 
-    .card-body h3 { color: var(--secondary); }
+    .card-body h3 {
+      color: var(--secondary);
+    }
   }
 
   .card-icon {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1;
     flex-shrink: 0;
     width: 40px;
@@ -404,6 +375,8 @@ body:has(.page-content .home-hero) {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    flex: 1;
+    min-width: 0;
 
     h3 {
       margin: 0;
@@ -423,61 +396,12 @@ body:has(.page-content .home-hero) {
   }
 }
 
-// ── HOMEPAGE: CURRENT FOCUS ───────────────────────────────────────
-.current-focus {
-  margin: 2.5rem 0;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--lightgray);
-
-  h2 {
-    @extend .section-label;
-  }
-
-  .focus-items {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .focus-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .focus-tag {
-    display: inline-block;
-    min-width: 2.75rem;
-    text-align: center;
-    padding: 0.2rem 0.55rem;
-    border-radius: 6px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    font-family: var(--rfm-mono);
-    background: var(--rfm-accent-soft);
-    color: var(--secondary);
-    border: 1px solid color-mix(in srgb, var(--secondary) 30%, transparent);
-    flex-shrink: 0;
-  }
-
-  .focus-label {
-    font-size: 0.88rem;
-    color: var(--darkgray);
-    line-height: 1.4;
-  }
-}
-
-// ── HEATMAP ───────────────────────────────────────────────────────
+// ── HEATMAP ──────────────────────────────────────────────────────
 .heatmap-section {
-  margin: 2.5rem 0 3rem;
-  padding-top: 2.5rem;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 2.5rem 2rem 3rem;
   border-top: 1px solid var(--lightgray);
-
-  .section-label,
-  .section-title {
-    // inherit from global
-  }
 }
 
 .heatmap-meta {
@@ -490,7 +414,7 @@ body:has(.page-content .home-hero) {
 }
 
 .heatmap-stat {
-  font-size: 2rem;
+  font-size: 1.85rem;
   font-family: var(--rfm-serif);
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -501,7 +425,7 @@ body:has(.page-content .home-hero) {
     font-family: var(--rfm-sans);
     color: var(--gray);
     font-weight: 400;
-    margin-left: 6px;
+    margin-left: 8px;
   }
 }
 
@@ -558,64 +482,47 @@ body:has(.page-content .home-hero) {
   transition: background var(--rfm-transition), transform 0.15s;
   cursor: pointer;
 
-  &:hover { transform: scale(1.4); }
+  &:hover {
+    transform: scale(1.4);
+  }
 
-  &[data-level="1"] { background: oklch(0.82 0.09 250); border-color: oklch(0.78 0.11 250); }
-  &[data-level="2"] { background: oklch(0.72 0.14 250); border-color: oklch(0.66 0.16 250); }
-  &[data-level="3"] { background: oklch(0.62 0.18 250); border-color: oklch(0.56 0.20 250); }
-  &[data-level="4"] { background: var(--secondary); border-color: oklch(0.48 0.22 250); }
+  &[data-level="1"] {
+    background: oklch(0.82 0.09 250);
+    border-color: oklch(0.78 0.11 250);
+  }
+  &[data-level="2"] {
+    background: oklch(0.72 0.14 250);
+    border-color: oklch(0.66 0.16 250);
+  }
+  &[data-level="3"] {
+    background: oklch(0.62 0.18 250);
+    border-color: oklch(0.56 0.20 250);
+  }
+  &[data-level="4"] {
+    background: var(--secondary);
+    border-color: oklch(0.48 0.22 250);
+  }
 }
 
 [saved-theme="dark"] .heatmap-cell {
-  &[data-level="1"] { background: oklch(0.35 0.08 250); border-color: oklch(0.30 0.09 250); }
-  &[data-level="2"] { background: oklch(0.42 0.13 250); border-color: oklch(0.37 0.14 250); }
-  &[data-level="3"] { background: oklch(0.50 0.17 250); border-color: oklch(0.45 0.18 250); }
-  &[data-level="4"] { background: var(--secondary); }
-}
-
-// ── PAGE HERO (inner pages) ───────────────────────────────────────
-.page-section-hero {
-  padding: 2.5rem 0 2rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid var(--lightgray);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image:
-      linear-gradient(var(--lightgray) 1px, transparent 1px),
-      linear-gradient(90deg, var(--lightgray) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: 0.25;
-    mask-image: radial-gradient(ellipse 60% 80% at 10% 50%, black 0%, transparent 100%);
-    pointer-events: none;
+  &[data-level="1"] {
+    background: oklch(0.35 0.08 250);
+    border-color: oklch(0.30 0.09 250);
   }
-
-  > * { position: relative; z-index: 1; }
-}
-
-// ── NOTE/BOOK PROGRESS BARS ───────────────────────────────────────
-.progress-bar {
-  margin-top: 0.75rem;
-  height: 3px;
-  background: var(--lightgray);
-  border-radius: 99px;
-  overflow: hidden;
-
-  .progress-fill {
-    height: 100%;
+  &[data-level="2"] {
+    background: oklch(0.42 0.13 250);
+    border-color: oklch(0.37 0.14 250);
+  }
+  &[data-level="3"] {
+    background: oklch(0.50 0.17 250);
+    border-color: oklch(0.45 0.18 250);
+  }
+  &[data-level="4"] {
     background: var(--secondary);
-    border-radius: 99px;
-    width: 0;
-    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-// ── SIDEBAR: CARD PANELS ──────────────────────────────────────────
+// ── SIDEBAR: CARD PANELS ─────────────────────────────────────────
 .right.sidebar .backlinks,
 .right.sidebar .toc {
   background: color-mix(in srgb, var(--light) 70%, var(--lightgray));
@@ -634,7 +541,7 @@ body:has(.page-content .home-hero) {
   }
 }
 
-// ── LANGUAGE SWITCHER (design match) ─────────────────────────────
+// ── LANGUAGE SWITCHER ────────────────────────────────────────────
 .language-switcher {
   display: flex;
   gap: 3px;
@@ -646,10 +553,10 @@ body:has(.page-content .home-hero) {
   flex-shrink: 0;
 
   .lang-btn {
-    font-size: 0.65rem;
+    font-size: 0.68rem;
     font-weight: 500;
     font-family: var(--rfm-mono);
-    padding: 4px 9px;
+    padding: 4px 10px;
     border-radius: 99px;
     cursor: pointer;
     color: var(--gray);
@@ -671,7 +578,17 @@ body:has(.page-content .home-hero) {
   }
 }
 
-// ── ARTICLE TYPOGRAPHY POLISH ─────────────────────────────────────
+[saved-theme="dark"] .language-switcher .lang-btn.active {
+  background: color-mix(in srgb, var(--lightgray) 80%, var(--light));
+}
+
+// ── EXPLORER FOLDER LABELS ───────────────────────────────────────
+// Make sure folder names look good in all 3 scripts.
+.explorer-content .folder-button span {
+  font-family: var(--rfm-sans);
+}
+
+// ── ARTICLE TYPOGRAPHY POLISH ────────────────────────────────────
 article {
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--rfm-serif);

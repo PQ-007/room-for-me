@@ -1,5 +1,5 @@
 ---
-title: "Нийтлэл · Blog · ブログ"
+title: "Blog"
 date:
 tags:
 ---
