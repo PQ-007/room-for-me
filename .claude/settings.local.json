@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/design2)",
+      "Bash(zcat /tmp/design2.bin)",
+      "Bash(tar -x -C /tmp/design2)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Room For Me — Bilguuntushig</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS — LIGHT ──────────────────────────────── */
+:root {
+  --bg:         #f5f7fb;
+  --bg2:        #edf0f7;
+  --ink:        #0f1624;
+  --ink2:       #4a5568;
+  --ink3:       #9aaccc;
+  --accent:     #2563eb;
+  --accent-soft:#dbeafe;
+  --border:     #d8e0f0;
+
+  --serif:      'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', system-ui, sans-serif;
+  --mono:       'DM Mono', monospace;
+  --mongolian:  'Noto Sans Mongolian', 'Traditional Mongolian', 'Mongolian Baiti', serif;
+
+  --r:          6px;
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  --nav-bg:     rgba(245,247,251,0.88);
+}
+
+/* ── TOKENS — DARK ───────────────────────────────── */
+[data-theme="dark"] {
+  --bg:         #0d1117;
+  --bg2:        #161b27;
+  --ink:        #e8edf8;
+  --ink2:       #8b98b5;
+  --ink3:       #4a5a7a;
+  --accent:     #3b82f6;
+  --accent-soft:#1e3a5f;
+  --border:     #1e2d45;
+  --nav-bg:     rgba(13,17,23,0.90);
+}
+
+/* ── TRADITIONAL MONGOLIAN SCRIPT ────────────────── */
+.mng-script {
+  font-family: var(--mongolian);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  direction: ltr;
+}
+
+/* ── RESET ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ── PAGE TRANSITIONS ───────────────────────────── */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; animation: fadeUp 0.55s cubic-bezier(0.4,0,0.2,1) both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── NAV ────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  height: 64px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  gap: 20px;
+}
+nav.scrolled {
+  border-bottom-color: var(--border);
+  box-shadow: 0 2px 20px rgba(15,22,36,0.08);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  transition: color var(--transition);
+  white-space: nowrap;
+}
+.nav-logo:hover { color: var(--accent); }
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none; flex: 1; justify-content: center;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink2);
+  transition: color var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--ink); }
+.nav-links a.active {
+  position: relative;
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: 99px;
+}
+.nav-right {
+  display: flex; align-items: center; gap: 10px;
+}
+.lang-toggle {
+  display: flex; gap: 3px;
+  background: var(--bg2);
+  border-radius: 99px;
+  padding: 3px;
+  border: 1px solid var(--border);
+}
+.lang-btn {
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--mono);
+  padding: 4px 9px;
+  border-radius: 99px;
+  cursor: pointer;
+  color: var(--ink2);
+  transition: background var(--transition), color var(--transition);
+  border: none;
+  background: transparent;
+  letter-spacing: 0.04em;
+}
+.lang-btn.active {
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 1px 4px rgba(15,22,36,0.12);
+}
+[data-theme="dark"] .lang-btn.active {
+  background: var(--bg2);
+}
+.theme-btn {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--bg2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+.theme-btn:hover { border-color: var(--accent); transform: scale(1.08); }
+
+/* ── HERO ──────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 120px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.4;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 0%, transparent 100%);
+}
+.hero-glow {
+  position: absolute; bottom: -200px; right: -100px; z-index: 0;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.70 0.18 250 / 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-glow2 {
+  position: absolute; top: -100px; left: -150px; z-index: 0;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.75 0.12 240 / 0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; max-width: 860px; }
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.1s both;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1.5px;
+  background: var(--accent);
+  border-radius: 99px;
+}
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(52px, 7vw, 96px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s both;
+}
+.hero-name em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-name-mng {
+  display: none;
+  font-family: var(--mongolian);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  margin-bottom: 28px;
+  height: clamp(220px, 28vw, 380px);
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s both;
+}
+.hero-name-mng em { color: var(--accent); }
+.hero-tagline {
+  font-size: clamp(16px, 2.2vw, 22px);
+  color: var(--ink2);
+  font-weight: 300;
+  max-width: 520px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s both;
+}
+.hero-tags {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.45s both;
+}
+.tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--ink2);
+  letter-spacing: 0.03em;
+}
+.tag.accent { background: var(--accent-soft); border-color: transparent; color: var(--accent); }
+.hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.55s both;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  font-family: var(--sans);
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: oklch(0.50 0.20 250);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--border);
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 48px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink3);
+  opacity: 0;
+  animation: fadeUp 0.7s 0.9s both;
+}
+.hero-scroll-line {
+  width: 48px; height: 1px;
+  background: var(--ink3);
+}
+
+/* ── TRADITIONAL MONGOLIAN HERO PANEL ──────────── */
+.mng-hero-panel {
+  display: none;
+  position: absolute;
+  right: 48px; top: 50%; transform: translateY(-50%);
+  z-index: 1;
+  align-items: center;
+  gap: 8px;
+}
+.mng-hero-panel.visible { display: flex; }
+.mng-vertical-text {
+  font-family: var(--mongolian);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink2);
+  letter-spacing: 0.08em;
+  padding: 20px 10px;
+  border-left: 1.5px solid var(--border);
+  height: 240px;
+  display: flex;
+  align-items: flex-start;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s both;
+}
+.mng-vertical-name {
+  font-family: var(--mongolian);
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  height: 200px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s both;
+}
+
+/* ── SECTION SHARED ────────────────────────────── */
+.section {
+  padding: 96px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 48px;
+}
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 48px;
+  width: calc(100% - 96px);
+}
+
+/* ── CURRENTLY WORKING ─────────────────────────── */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.work-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.work-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(37,99,235,0.10);
+  border-color: var(--accent);
+}
+.work-card-badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.work-card-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.work-card-desc {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+
+/* ── HEATMAP ────────────────────────────────────── */
+.heatmap-wrap { overflow-x: auto; padding-bottom: 8px; }
+.heatmap { display: flex; gap: 3px; }
+.heatmap-week { display: flex; flex-direction: column; gap: 3px; }
+.heatmap-cell {
+  width: 12px; height: 12px;
+  border-radius: 2px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  transition: background var(--transition), transform 0.15s;
+  cursor: pointer;
+}
+.heatmap-cell:hover { transform: scale(1.4); }
+.heatmap-cell[data-level="1"] { background: oklch(0.82 0.09 250); border-color: oklch(0.78 0.11 250); }
+.heatmap-cell[data-level="2"] { background: oklch(0.72 0.14 250); border-color: oklch(0.66 0.16 250); }
+.heatmap-cell[data-level="3"] { background: oklch(0.62 0.18 250); border-color: oklch(0.56 0.20 250); }
+.heatmap-cell[data-level="4"] { background: var(--accent); border-color: oklch(0.48 0.22 250); }
+[data-theme="dark"] .heatmap-cell[data-level="1"] { background: oklch(0.35 0.08 250); }
+[data-theme="dark"] .heatmap-cell[data-level="2"] { background: oklch(0.42 0.13 250); }
+[data-theme="dark"] .heatmap-cell[data-level="3"] { background: oklch(0.50 0.17 250); }
+[data-theme="dark"] .heatmap-cell[data-level="4"] { background: var(--accent); }
+.heatmap-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px;
+}
+.heatmap-stat {
+  font-size: 32px;
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+.heatmap-stat span { font-size: 14px; font-family: var(--sans); color: var(--ink2); font-weight: 400; margin-left: 6px; }
+.heatmap-legend { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--ink3); }
+.heatmap-legend-cells { display: flex; gap: 3px; }
+.heatmap-months { display: flex; gap: 3px; margin-bottom: 6px; }
+.month-label { font-family: var(--mono); font-size: 10px; color: var(--ink3); letter-spacing: 0.04em; }
+
+/* ── FOOTER ─────────────────────────────────────── */
+footer {
+  padding: 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-left { font-family: var(--serif); font-size: 14px; color: var(--ink2); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink3);
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* ── INNER PAGE HERO ─────────────────────────────── */
+.page-hero {
+  padding: 140px 48px 64px;
+  border-bottom: 1px solid var(--border);
+  position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.3;
+  mask-image: radial-gradient(ellipse 60% 80% at 10% 50%, black 0%, transparent 100%);
+}
+.page-hero > * { position: relative; z-index: 1; }
+.page-hero-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.page-hero-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.page-hero-sub {
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--ink2);
+  max-width: 460px;
+  font-weight: 300;
+}
+
+/* ── BLOG LIST ──────────────────────────────────── */
+.post-list { list-style: none; }
+.post-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.post-item:first-child { border-top: 1px solid var(--border); }
+.post-item:hover .post-title { color: var(--accent); }
+.post-date { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink3); padding-top: 5px; }
+.post-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  transition: color var(--transition);
+}
+.post-excerpt { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+.post-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.post-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--ink3);
+}
+
+/* ── PROJECTS ───────────────────────────────────── */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+.project-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all var(--transition);
+  cursor: pointer;
+  background: var(--bg);
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(37,99,235,0.12);
+  border-color: var(--accent);
+}
+.project-card-header {
+  height: 140px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 36px;
+  font-style: italic;
+  color: var(--accent);
+  background: var(--accent-soft);
+  letter-spacing: -0.02em;
+}
+.project-card-body { padding: 24px; }
+.project-card-title { font-family: var(--serif); font-size: 20px; font-weight: 500; margin-bottom: 8px; }
+.project-card-desc { font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 16px; }
+.project-card-stack { display: flex; gap: 8px; flex-wrap: wrap; }
+.stack-chip {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--ink2);
+}
+
+/* ── BOOK/LESSON CARDS ──────────────────────────── */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.note-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(37,99,235,0.10);
+  border-color: var(--accent);
+}
+.note-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.note-card-title { font-family: var(--serif); font-size: 17px; font-weight: 500; margin-bottom: 6px; line-height: 1.3; }
+.note-card-meta { font-family: var(--mono); font-size: 11px; color: var(--ink3); letter-spacing: 0.04em; }
+.progress-bar {
+  margin-top: 16px; height: 3px;
+  background: var(--border); border-radius: 99px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 99px;
+  width: 0;
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink3); }
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0 20px; gap: 12px; }
+  .nav-links { gap: 16px; }
+  .nav-links li:nth-child(4), .nav-links li:nth-child(5) { display: none; }
+  #hero, .page-hero { padding-left: 24px; padding-right: 24px; }
+  .section { padding: 64px 24px; }
+  .post-item { grid-template-columns: 1fr; gap: 8px; }
+  footer { padding: 32px 24px; }
+  .hero-scroll { left: 24px; }
+  .mng-hero-panel { display: none !important; }
+  .divider { margin: 0 24px; width: calc(100% - 48px); }
+}
+@media (max-width: 480px) {
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav id="nav">
+  <span class="nav-logo" onclick="showPage('home')">B.</span>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home" class="active" data-i18n="nav_home">About</a></li>
+    <li><a onclick="showPage('blog')" data-page="blog" data-i18n="nav_blog">Blog</a></li>
+    <li><a onclick="showPage('books')" data-page="books" data-i18n="nav_books">Books</a></li>
+    <li><a onclick="showPage('lessons')" data-page="lessons" data-i18n="nav_lessons">Lessons</a></li>
+    <li><a onclick="showPage('projects')" data-page="projects" data-i18n="nav_projects">Projects</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-toggle" id="langToggle">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('mn')">МН</button>
+      <button class="lang-btn" onclick="setLang('mng')">ᠮᠤᠩ</button>
+      <button class="lang-btn" onclick="setLang('jp')">JP</button>
+    </div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <section id="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" data-i18n="hero_eyebrow">KOSEN Student · Mongolia</p>
+
+      <h1 class="hero-name" id="heroNameLatin">Bilguun<em>tushig</em></h1>
+      <div class="hero-name-mng" id="heroNameMng">ᠪᠢᠯᠢᠭᠦᠨ<em>ᠲᠦᠰᠢᠭ</em></div>
+
+      <p class="hero-tagline" data-i18n="hero_tagline">ML learner, builder, and writer. I share what I learn — code, books, ideas.</p>
+      <div class="hero-tags">
+        <span class="tag accent" data-i18n="tag1">Machine Learning</span>
+        <span class="tag" data-i18n="tag2">Japanese N2</span>
+        <span class="tag" data-i18n="tag3">Fl4shc4rd App</span>
+        <span class="tag" data-i18n="tag4">Building in public</span>
+      </div>
+      <div class="hero-cta">
+        <button class="btn btn-primary" onclick="showPage('projects')" data-i18n="hero_cta1">View Projects</button>
+        <button class="btn btn-secondary" onclick="showPage('blog')" data-i18n="hero_cta2">Read Blog</button>
+      </div>
+    </div>
+
+    <div class="mng-hero-panel" id="mngHeroPanel">
+      <div class="mng-vertical-text">ᠮᠠᠰᠢᠨ ᠰᠤᠷᠤᠯᠴᠠᠯ · ᠪᠦᠲᠦᠭᠡᠭᠴᠢ · ᠪᠢᠴᠢᠭᠴᠢ</div>
+      <div class="mng-vertical-name">ᠪᠢᠯᠢᠭᠦᠨᠲᠦᠰᠢᠭ</div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span data-i18n="scroll_hint">scroll</span>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CURRENTLY WORKING ON -->
+  <section class="section">
+    <p class="section-label" data-i18n="working_label">Currently Working On</p>
+    <h2 class="section-title" data-i18n="working_title">In Progress</h2>
+    <div class="work-grid">
+      <div class="work-card" onclick="showPage('lessons')">
+        <div class="work-card-badge">ML</div>
+        <div class="work-card-title" data-i18n="work1_title">Machine Learning A-Z</div>
+        <div class="work-card-desc" data-i18n="work1_desc">Covering supervised, unsupervised, and reinforcement learning. Deep learning from scratch.</div>
+      </div>
+      <div class="work-card" onclick="showPage('lessons')">
+        <div class="work-card-badge">JP</div>
+        <div class="work-card-title" data-i18n="work2_title">Japanese N2 Grammar</div>
+        <div class="work-card-desc" data-i18n="work2_desc">文法勉強中 — Studying grammar patterns and reading comprehension for the N2 exam.</div>
+      </div>
+      <div class="work-card" onclick="showPage('projects')">
+        <div class="work-card-badge">APP</div>
+        <div class="work-card-title" data-i18n="work3_title">Fl4shc4rd</div>
+        <div class="work-card-desc" data-i18n="work3_desc">KOSEN diploma flashcard app. Devlogs, experiments, and release notes.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ACTIVITY HEATMAP -->
+  <section class="section">
+    <p class="section-label" data-i18n="activity_label">Activity</p>
+    <h2 class="section-title" data-i18n="activity_title">Learning Streak</h2>
+    <div class="heatmap-meta">
+      <div>
+        <div class="heatmap-stat" id="heatmapCount">142 <span data-i18n="contributions">contributions this year</span></div>
+      </div>
+      <div class="heatmap-legend">
+        <span>less</span>
+        <div class="heatmap-legend-cells">
+          <div class="heatmap-cell" style="width:10px;height:10px;"></div>
+          <div class="heatmap-cell" data-level="1" style="width:10px;height:10px;"></div>
+          <div class="heatmap-cell" data-level="2" style="width:10px;height:10px;"></div>
+          <div class="heatmap-cell" data-level="3" style="width:10px;height:10px;"></div>
+          <div class="heatmap-cell" data-level="4" style="width:10px;height:10px;"></div>
+        </div>
+        <span>more</span>
+      </div>
+    </div>
+    <div class="heatmap-wrap">
+      <div id="heatmap-months" class="heatmap-months"></div>
+      <div id="heatmap" class="heatmap"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© 2026 Bilguuntushig · Built with care</div>
+    <div class="footer-links">
+      <a href="https://github.com/bilguunpq" target="_blank">GitHub</a>
+      <a onclick="showPage('blog')">Blog</a>
+      <a onclick="showPage('projects')">Projects</a>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PAGE: BLOG
+══════════════════════════════════════════════════════ -->
+<div id="page-blog" class="page">
+  <div class="page-hero">
+    <p class="page-hero-label" data-i18n="blog_label">Thoughts &amp; Logs</p>
+    <h1 class="page-hero-title" data-i18n="blog_title">Blog</h1>
+    <p class="page-hero-sub" data-i18n="blog_sub">Internship logs, reflections, and tech essays.</p>
+  </div>
+  <div class="section">
+    <ul class="post-list">
+      <li class="post-item">
+        <div class="post-date">May 03<br>2026</div>
+        <div>
+          <div class="post-title" data-i18n="post1_title">Starting my ML journey from scratch</div>
+          <div class="post-excerpt" data-i18n="post1_exc">Why I decided to learn machine learning properly, and the resources I use.</div>
+          <div class="post-tags"><span class="post-tag">ML</span><span class="post-tag">reflection</span></div>
+        </div>
+      </li>
+      <li class="post-item">
+        <div class="post-date">Apr 18<br>2026</div>
+        <div>
+          <div class="post-title" data-i18n="post2_title">Building Fl4shc4rd — week 3 devlog</div>
+          <div class="post-excerpt" data-i18n="post2_exc">Progress update on my KOSEN diploma project. What worked, what broke.</div>
+          <div class="post-tags"><span class="post-tag">devlog</span><span class="post-tag">app</span></div>
+        </div>
+      </li>
+      <li class="post-item">
+        <div class="post-date">Mar 29<br>2026</div>
+        <div>
+          <div class="post-title" data-i18n="post3_title">Passing JLPT N2 — my study plan</div>
+          <div class="post-excerpt" data-i18n="post3_exc">A breakdown of how I structured my Japanese study routine while juggling school and projects.</div>
+          <div class="post-tags"><span class="post-tag">Japanese</span><span class="post-tag">study</span></div>
+        </div>
+      </li>
+      <li class="post-item">
+        <div class="post-date">Feb 14<br>2026</div>
+        <div>
+          <div class="post-title" data-i18n="post4_title">Reading Deep Learning by Goodfellow</div>
+          <div class="post-excerpt" data-i18n="post4_exc">Chapter-by-chapter notes and thoughts on the bible of deep learning.</div>
+          <div class="post-tags"><span class="post-tag">books</span><span class="post-tag">DL</span></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <footer>
+    <div class="footer-left">© 2026 Bilguuntushig</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a href="https://github.com/bilguunpq" target="_blank">GitHub</a>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PAGE: BOOKS
+══════════════════════════════════════════════════════ -->
+<div id="page-books" class="page">
+  <div class="page-hero">
+    <p class="page-hero-label" data-i18n="books_label">What I am Reading</p>
+    <h1 class="page-hero-title" data-i18n="books_title">Book Notes</h1>
+    <p class="page-hero-sub" data-i18n="books_sub">Deep Learning, biology — annotated notes from my reading.</p>
+  </div>
+  <div class="section">
+    <div class="notes-grid">
+      <div class="note-card">
+        <div class="note-card-icon">📖</div>
+        <div class="note-card-title">Deep Learning</div>
+        <div class="note-card-meta">Goodfellow, Bengio, Courville · 2016</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="60"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">🧬</div>
+        <div class="note-card-title">The Gene</div>
+        <div class="note-card-meta">Siddhartha Mukherjee · 2016</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="35"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">🤖</div>
+        <div class="note-card-title">Hands-On Machine Learning</div>
+        <div class="note-card-meta">Aurélien Géron · 3rd ed.</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="80"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">🧠</div>
+        <div class="note-card-title">Thinking, Fast and Slow</div>
+        <div class="note-card-meta">Daniel Kahneman · 2011</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="100"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">🌏</div>
+        <div class="note-card-title">Sapiens</div>
+        <div class="note-card-meta">Yuval Noah Harari · 2011</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="45"></div></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-left">© 2026 Bilguuntushig</div>
+    <div class="footer-links"><a onclick="showPage('home')">Home</a></div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PAGE: LESSONS
+══════════════════════════════════════════════════════ -->
+<div id="page-lessons" class="page">
+  <div class="page-hero">
+    <p class="page-hero-label" data-i18n="lessons_label">Study Notes</p>
+    <h1 class="page-hero-title" data-i18n="lessons_title">Lesson Notes</h1>
+    <p class="page-hero-sub" data-i18n="lessons_sub">ML A-Z, Japanese N2 grammar notes, and more.</p>
+  </div>
+  <div class="section">
+    <div class="notes-grid">
+      <div class="note-card">
+        <div class="note-card-icon">🤖</div>
+        <div class="note-card-title">ML A-Z — Supervised Learning</div>
+        <div class="note-card-meta">COURSE · 24 lessons</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="55"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">🔮</div>
+        <div class="note-card-title">Deep Learning from Scratch</div>
+        <div class="note-card-meta">COURSE · 18 lessons</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="30"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">🇯🇵</div>
+        <div class="note-card-title">Japanese N2 文法</div>
+        <div class="note-card-meta">GRAMMAR · 172 patterns</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="48"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">📝</div>
+        <div class="note-card-title">N2 Reading Comprehension</div>
+        <div class="note-card-meta">PRACTICE · 40 texts</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="20"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">⚡</div>
+        <div class="note-card-title">Python for ML</div>
+        <div class="note-card-meta">COURSE · 12 modules</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="90"></div></div>
+      </div>
+      <div class="note-card">
+        <div class="note-card-icon">📊</div>
+        <div class="note-card-title">Statistics Fundamentals</div>
+        <div class="note-card-meta">COURSE · 10 modules</div>
+        <div class="progress-bar"><div class="progress-fill" data-w="70"></div></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-left">© 2026 Bilguuntushig</div>
+    <div class="footer-links"><a onclick="showPage('home')">Home</a></div>
+  </footer>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     PAGE: PROJECTS
+══════════════════════════════════════════════════════ -->
+<div id="page-projects" class="page">
+  <div class="page-hero">
+    <p class="page-hero-label" data-i18n="projects_label">What I Build</p>
+    <h1 class="page-hero-title" data-i18n="projects_title">Projects</h1>
+    <p class="page-hero-sub" data-i18n="projects_sub">Apps, experiments, and side projects built in public.</p>
+  </div>
+  <div class="section">
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-card-header">Fl4sh</div>
+        <div class="project-card-body">
+          <div class="project-card-title">Fl4shc4rd</div>
+          <div class="project-card-desc" data-i18n="proj1_desc">KOSEN diploma flashcard app. Spaced repetition, custom decks, offline support.</div>
+          <div class="project-card-stack">
+            <span class="stack-chip">React Native</span>
+            <span class="stack-chip">SQLite</span>
+            <span class="stack-chip">TypeScript</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-header" style="font-size:28px;">Room<em style="font-style:italic;color:var(--accent)">4</em>Me</div>
+        <div class="project-card-body">
+          <div class="project-card-title">Room For Me</div>
+          <div class="project-card-desc" data-i18n="proj2_desc">This very site. A personal digital garden built on Quartz v4.</div>
+          <div class="project-card-stack">
+            <span class="stack-chip">Quartz v4</span>
+            <span class="stack-chip">Obsidian</span>
+            <span class="stack-chip">Markdown</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-header" style="background:var(--accent-soft);color:var(--accent);">ML</div>
+        <div class="project-card-body">
+          <div class="project-card-title">ML Experiments</div>
+          <div class="project-card-desc" data-i18n="proj3_desc">Notebooks and mini-projects from my machine learning coursework.</div>
+          <div class="project-card-stack">
+            <span class="stack-chip">Python</span>
+            <span class="stack-chip">PyTorch</span>
+            <span class="stack-chip">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-left">© 2026 Bilguuntushig</div>
+    <div class="footer-links">
+      <a onclick="showPage('home')">Home</a>
+      <a href="https://github.com/bilguunpq" target="_blank">GitHub</a>
+    </div>
+  </footer>
+</div>
+
+
+<script>
+/* ── TRANSLATIONS ───────────────────────────────────── */
+const translations = {
+  en: {
+    nav_home:'About', nav_blog:'Blog', nav_books:'Books', nav_lessons:'Lessons', nav_projects:'Projects',
+    hero_eyebrow:'KOSEN Student · Mongolia',
+    hero_tagline:'ML learner, builder, and writer. I share what I learn — code, books, ideas.',
+    hero_cta1:'View Projects', hero_cta2:'Read Blog',
+    tag1:'Machine Learning', tag2:'Japanese N2', tag3:'Fl4shc4rd App', tag4:'Building in public',
+    scroll_hint:'scroll',
+    working_label:'Currently Working On', working_title:'In Progress',
+    work1_title:'Machine Learning A-Z', work1_desc:'Covering supervised, unsupervised, and reinforcement learning. Deep learning from scratch.',
+    work2_title:'Japanese N2 Grammar', work2_desc:'文法勉強中 — Studying grammar patterns and reading comprehension for the N2 exam.',
+    work3_title:'Fl4shc4rd', work3_desc:'KOSEN diploma flashcard app. Devlogs, experiments, and release notes.',
+    activity_label:'Activity', activity_title:'Learning Streak', contributions:'contributions this year',
+    blog_label:'Thoughts & Logs', blog_title:'Blog', blog_sub:'Internship logs, reflections, and tech essays.',
+    post1_title:'Starting my ML journey from scratch', post1_exc:'Why I decided to learn machine learning properly, and the resources I use.',
+    post2_title:'Building Fl4shc4rd — week 3 devlog', post2_exc:'Progress update on my KOSEN diploma project. What worked, what broke.',
+    post3_title:'Passing JLPT N2 — my study plan', post3_exc:'A breakdown of how I structured my Japanese study routine while juggling school and projects.',
+    post4_title:'Reading Deep Learning by Goodfellow', post4_exc:'Chapter-by-chapter notes and thoughts on the bible of deep learning.',
+    books_label:'What I am Reading', books_title:'Book Notes', books_sub:'Deep Learning, biology — annotated notes from my reading.',
+    lessons_label:'Study Notes', lessons_title:'Lesson Notes', lessons_sub:'ML A-Z, Japanese N2 grammar notes, and more.',
+    projects_label:'What I Build', projects_title:'Projects', projects_sub:'Apps, experiments, and side projects built in public.',
+    proj1_desc:'KOSEN diploma flashcard app. Spaced repetition, custom decks, offline support.',
+    proj2_desc:'This very site. A personal digital garden built on Quartz v4.',
+    proj3_desc:'Notebooks and mini-projects from my machine learning coursework.',
+  },
+  mn: {
+    nav_home:'Миний тухай', nav_blog:'Блог', nav_books:'Ном', nav_lessons:'Хичээл', nav_projects:'Төсөл',
+    hero_eyebrow:'KOSEN Оюутан · Монгол',
+    hero_tagline:'ML суралцагч, бүтээгч, бичигч. Сурсан зүйлээ хуваалцдаг — код, ном, санаа.',
+    hero_cta1:'Төслүүд харах', hero_cta2:'Блог унших',
+    tag1:'Машин сургалт', tag2:'Япон N2', tag3:'Fl4shc4rd апп', tag4:'Нийтэд ил байдлаар бүтээх',
+    scroll_hint:'доош',
+    working_label:'Одоо хийж буй', working_title:'Явагдаж буй',
+    work1_title:'ML A-Z Машин сургалт', work1_desc:'Хянаж, хянагдалгүй, бэхжүүлэх суралцахыг хамарсан.',
+    work2_title:'Япон хэл N2 дүрэм', work2_desc:'文法勉強中 — N2 шалгалтанд зориулсан дүрмийн загвар, уншлагын ойлголт.',
+    work3_title:'Fl4shc4rd', work3_desc:'KOSEN дипломын флэшкард апп. Девлог, туршилт, дуусгавар тэмдэглэл.',
+    activity_label:'Үйл ажиллагаа', activity_title:'Суралцах дараалал', contributions:'оролцоо энэ жил',
+    blog_label:'Бодол & Тэмдэглэл', blog_title:'Блог', blog_sub:'Дадлагын тэмдэглэл, эргэцүүлэл, техникийн нийтлэл.',
+    post1_title:'ML аяллыг эхнээс эхлэх нь', post1_exc:'Яагаад ML-ийг зөв сурахаар шийдсэн болон ашиглаж буй эх сурвалжууд.',
+    post2_title:'Fl4shc4rd барих — 3 дахь долоо хоног', post2_exc:'KOSEN дипломын төслийн явцын тайлан.',
+    post3_title:'JLPT N2 өгөх — миний судалгааны төлөвлөгөө', post3_exc:'Сургууль, төслөө хослуулан Япон хэлийн судалгааны горимыг хэрхэн зохион байгуулсан.',
+    post4_title:'Goodfellow-ын Deep Learning номыг унших нь', post4_exc:'Гүн сургалтын библийн бүлэг тус бүрийн тэмдэглэл, бодол.',
+    books_label:'Уншиж буй', books_title:'Номын тэмдэглэл', books_sub:'Гүн сургалт, биологи — уншлагаасаа аваасан тэмдэглэл.',
+    lessons_label:'Судалгааны тэмдэглэл', lessons_title:'Хичээлийн тэмдэглэл', lessons_sub:'ML A-Z, Япон N2 дүрмийн тэмдэглэл болон бусад.',
+    projects_label:'Би юу бүтээдэг', projects_title:'Төслүүд', projects_sub:'Апп, туршилт, нийтэд ил гаргасан дэд төслүүд.',
+    proj1_desc:'KOSEN дипломын флэшкард апп. Орон зайн давталт, тусгай багц, офлайн дэмжлэг.',
+    proj2_desc:'Яг энэ сайт. Quartz v4 дээр баригдсан хувийн цахим цэцэрлэгт хүрээлэн.',
+    proj3_desc:'ML хичээлийн нотбук болон жижиг төслүүд.',
+  },
+  mng: {
+    nav_home:'About', nav_blog:'ᠪᠢᠴᠢᠭ', nav_books:'ᠨᠣᠮ', nav_lessons:'ᠬᠢᠴᠢᠶᠡᠯ', nav_projects:'ᠲᠥᠰᠦᠯ',
+    hero_eyebrow:'KOSEN ᠣᠶᠤᠲᠠᠨ · ᠮᠣᠩᠭᠣᠯ',
+    hero_tagline:'ᠮᠠᠰᠢᠨ ᠰᠤᠷᠤᠯᠴᠠᠯ ᠤᠨ ᠰᠤᠷᠤᠭᠴᠢ᠂ ᠪᠦᠲᠦᠭᠡᠭᠴᠢ᠂ ᠪᠢᠴᠢᠭᠴᠢ᠃',
+    hero_cta1:'ᠲᠥᠰᠦᠯ ᠦᠵᠡᠬᠦ', hero_cta2:'ᠪᠢᠴᠢᠭ ᠤᠨᠰᠢᠬᠤ',
+    tag1:'ᠮᠠᠰᠢᠨ ᠰᠤᠷᠤᠯᠴᠠᠯ', tag2:'ᠶᠠᠫᠣᠨ N2', tag3:'Fl4shc4rd', tag4:'ᠨᠡᠶᠢᠲᠡᠳ ᠪᠦᠲᠦᠭᠡᠬᠦ',
+    scroll_hint:'ᠳᠣᠷᠤᠭᠰᠢ',
+    working_label:'ᠣᠳᠣ ᠬᠢᠵᠦ ᠪᠤᠢ', working_title:'ᠶᠠᠪᠤᠭᠳᠠᠵᠤ ᠪᠤᠢ',
+    work1_title:'ML A-Z ᠮᠠᠰᠢᠨ ᠰᠤᠷᠤᠯᠴᠠᠯ', work1_desc:'ᠬᠢᠨᠠᠵᠤ᠂ ᠬᠢᠨᠠᠭᠳᠠᠯᠭᠦᠢ᠂ ᠴᠢᠩᠭᠠᠳᠬᠠᠬᠤ ᠰᠤᠷᠤᠯᠴᠠᠯ᠃',
+    work2_title:'ᠶᠠᠫᠣᠨ ᠬᠡᠯᠡ N2 ᠳᠦᠷᠢᠮ', work2_desc:'文法勉強中 — N2 ᠰᠢᠯᠭᠠᠯᠲᠠ ᠳᠦ ᠵᠣᠷᠢᠭᠤᠯᠤᠭᠰᠠᠨ ᠳᠦᠷᠢᠮ᠃',
+    work3_title:'Fl4shc4rd', work3_desc:'KOSEN ᠳ᠋ᠢᠫᠯᠣᠮ ᠤᠨ ᠹᠯᠡᠱᠺᠠᠷᠳ ᠠᠫᠫ᠃',
+    activity_label:'ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ', activity_title:'ᠰᠤᠷᠤᠯᠴᠠᠯ ᠤᠨ ᠳᠠᠷᠠᠭᠠᠯᠠᠯ', contributions:'ᠣᠷᠣᠯᠴᠠᠭ᠎ᠠ ᠡᠨᠡ ᠵᠢᠯ',
+    blog_label:'ᠪᠣᠳᠣᠯ & ᠲᠡᠮᠳᠡᠭᠯᠡᠯ', blog_title:'ᠪᠢᠴᠢᠭ', blog_sub:'ᠳᠠᠳᠠᠯᠭ᠎ᠠ ᠶᠢᠨ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ᠂ ᠡᠷᠭᠢᠴᠡᠭᠦᠯᠦᠯ᠂ ᠲᠧᠭᠨᠢᠺ ᠨᠢᠶᠲᠯᠡᠯ᠃',
+    post1_title:'ML ᠠᠶᠠᠯᠠᠯ ᠢ ᠡᠬᠢᠨ ᠡᠴᠡ ᠡᠬᠢᠯᠡᠬᠦ ᠨᠢ', post1_exc:'ML ᠶᠢ ᠵᠦᠪ ᠰᠤᠷᠬᠤ ᠪᠠᠷ ᠰᠢᠢᠳᠦᠭᠰᠡᠨ ᠱᠠᠯᠲᠠᠭᠠᠨ᠃',
+    post2_title:'Fl4shc4rd ᠪᠠᠷᠢᠬᠤ — 3 ᠳ᠋ᠠᠬᠢ ᠳᠣᠯᠣᠭ᠎ᠠ ᠬᠣᠨᠣᠭ', post2_exc:'KOSEN ᠳ᠋ᠢᠫᠯᠣᠮ ᠤᠨ ᠲᠥᠰᠦᠯ ᠤᠨ ᠶᠠᠪᠤᠴᠠ᠃',
+    post3_title:'JLPT N2 ᠥᠭᠬᠦ — ᠮᠢᠨᠦ ᠰᠤᠳᠤᠯᠭᠠᠨ ᠤ ᠲᠥᠯᠥᠪᠯᠡᠭᠡ', post3_exc:'ᠶᠠᠫᠣᠨ ᠬᠡᠯᠡᠨ ᠦ ᠰᠤᠳᠤᠯᠭᠠᠨ ᠤ ᠭᠣᠷᠢᠮ᠃',
+    post4_title:'Goodfellow ᠶᠢᠨ Deep Learning ᠨᠣᠮ ᠤᠨᠰᠢᠬᠤ ᠨᠢ', post4_exc:'ᠭᠦᠨ ᠰᠤᠷᠤᠯᠴᠠᠯ ᠤᠨ ᠪᠦᠯᠦᠭ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ᠃',
+    books_label:'ᠤᠩᠰᠢᠵᠤ ᠪᠤᠢ', books_title:'ᠨᠣᠮ ᠤᠨ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ', books_sub:'ᠭᠦᠨ ᠰᠤᠷᠤᠯᠴᠠᠯ᠂ ᠪᠢᠣᠯᠣᠭᠢ — ᠲᠡᠮᠳᠡᠭᠯᠡᠯ᠃',
+    lessons_label:'ᠰᠤᠳᠤᠯᠭᠠᠨ ᠤ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ', lessons_title:'ᠬᠢᠴᠢᠶᠡᠯ ᠦᠨ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ', lessons_sub:'ML A-Z᠂ ᠶᠠᠫᠣᠨ N2 ᠳᠦᠷᠢᠮ ᠤᠨ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ᠃',
+    projects_label:'ᠪᠢ ᠶᠤᠤ ᠪᠦᠲᠦᠭᠡᠳᠡᠭ', projects_title:'ᠲᠥᠰᠦᠯ', projects_sub:'ᠠᠫᠫ᠂ ᠲᠤᠷᠰᠢᠯᠲᠠ᠂ ᠨᠡᠶᠢᠲᠡᠳ ᠢᠯ ᠭᠠᠷᠭᠠᠭᠰᠠᠨ ᠳᠡᠳ ᠲᠥᠰᠦᠯ᠃',
+    proj1_desc:'KOSEN ᠳ᠋ᠢᠫᠯᠣᠮ ᠤᠨ ᠹᠯᠡᠱᠺᠠᠷᠳ ᠠᠫᠫ᠃',
+    proj2_desc:'ᠡᠨᠡ ᠰᠠᠶᠢᠲ ᠥᠪᠡᠷ ᠥᠪᠡᠷ ᠢ ᠨᠢ᠃',
+    proj3_desc:'ML ᠬᠢᠴᠢᠶᠡᠯ ᠦᠨ ᠨᠣᠲᠪᠤᠺ᠃',
+  },
+  jp: {
+    nav_home:'About', nav_blog:'ブログ', nav_books:'読書', nav_lessons:'学習', nav_projects:'制作物',
+    hero_eyebrow:'KOSENの学生 · モンゴル',
+    hero_tagline:'ML学習者・ビルダー・ライター。コード、本、アイデアを共有します。',
+    hero_cta1:'制作物を見る', hero_cta2:'ブログを読む',
+    tag1:'機械学習', tag2:'日本語N2', tag3:'Fl4shc4rdアプリ', tag4:'公開製作中',
+    scroll_hint:'スクロール',
+    working_label:'現在取り組んでいること', working_title:'進行中',
+    work1_title:'ML A-Z 機械学習', work1_desc:'教師あり・なし・強化学習を網羅。ゼロから深層学習。',
+    work2_title:'日本語N2文法', work2_desc:'文法勉強中 — N2試験に向けて文法パターンと読解を学習。',
+    work3_title:'Fl4shc4rd', work3_desc:'KOSENの卒業制作フラッシュカードアプリ。開発ログ・実験。',
+    activity_label:'活動', activity_title:'学習ストリーク', contributions:'コントリビューション（今年）',
+    blog_label:'考えとログ', blog_title:'ブログ', blog_sub:'研修ログ、振り返り、技術エッセイ。',
+    post1_title:'ML学習をゼロから始める', post1_exc:'機械学習をきちんと学ぼうと決めた理由と使っているリソース。',
+    post2_title:'Fl4shc4rdを作る — 3週目の開発ログ', post2_exc:'KOSENの卒業制作の進捗。うまくいったこと、失敗したこと。',
+    post3_title:'JLPT N2合格 — 私の学習計画', post3_exc:'学校と制作を両立しながら日本語の勉強ルーティンを組んだ方法。',
+    post4_title:'GoodfellowのDeep Learningを読む', post4_exc:'深層学習のバイブルを章ごとにまとめたノート。',
+    books_label:'読んでいる本', books_title:'読書ノート', books_sub:'深層学習、生物学 — 読書からの注釈付きノート。',
+    lessons_label:'学習ノート', lessons_title:'レッスンノート', lessons_sub:'ML A-Z、日本語N2文法ノートなど。',
+    projects_label:'作っているもの', projects_title:'制作物', projects_sub:'アプリ、実験、公開中のサイドプロジェクト。',
+    proj1_desc:'KOSENの卒業制作フラッシュカードアプリ。間隔反復、カスタムデッキ、オフライン対応。',
+    proj2_desc:'このサイト自体。Quartz v4で作った個人デジタルガーデン。',
+    proj3_desc:'ML授業からのノートブックとミニプロジェクト。',
+  }
+};
+
+let currentLang = localStorage.getItem('rfm-lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('rfm-lang', lang);
+  const t = translations[lang];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+
+  const latinName = document.getElementById('heroNameLatin');
+  const mngName   = document.getElementById('heroNameMng');
+  const mngPanel  = document.getElementById('mngHeroPanel');
+
+  if (lang === 'mng') {
+    latinName.style.display = 'none';
+    mngName.style.display   = 'block';
+    mngPanel.classList.add('visible');
+  } else {
+    latinName.style.display = 'block';
+    mngName.style.display   = 'none';
+    mngPanel.classList.remove('visible');
+    if (lang === 'mn') {
+      latinName.innerHTML = 'Билгүүн<em>тушиг</em>';
+    } else {
+      latinName.innerHTML = 'Bilguun<em>tushig</em>';
+    }
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+  if (activeBtn) activeBtn.classList.add('active');
+}
+
+/* ── THEME ───────────────────────────────────────────── */
+let isDark = localStorage.getItem('rfm-theme') !== 'light';
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeBtn').textContent = isDark ? '🌙' : '☀️';
+}
+
+function toggleTheme() {
+  isDark = !isDark;
+  localStorage.setItem('rfm-theme', isDark ? 'dark' : 'light');
+  applyTheme();
+}
+
+/* ── PAGE ROUTING ────────────────────────────────────── */
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + name);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('data-page') === name);
+  });
+  if (name === 'books' || name === 'lessons') {
+    setTimeout(animateProgressBars, 200);
+  }
+}
+
+/* ── HEATMAP ─────────────────────────────────────────── */
+function buildHeatmap() {
+  const heatmap = document.getElementById('heatmap');
+  const monthsEl = document.getElementById('heatmap-months');
+  const WEEKS = 52;
+  const today = new Date();
+
+  function seededRand(seed) {
+    const x = Math.sin(seed + 1) * 10000;
+    return x - Math.floor(x);
+  }
+
+  let d = new Date(today);
+  d.setDate(d.getDate() - WEEKS * 7);
+  while (d.getDay() !== 0) d.setDate(d.getDate() - 1);
+
+  const monthLabels = [];
+  let total = 0;
+
+  for (let w = 0; w < WEEKS; w++) {
+    const week = document.createElement('div');
+    week.className = 'heatmap-week';
+    for (let day = 0; day < 7; day++) {
+      const cell = document.createElement('div');
+      cell.className = 'heatmap-cell';
+      const seed = d.getFullYear() * 1000 + d.getMonth() * 31 + d.getDate();
+      const r = seededRand(seed);
+      let level = 0;
+      if (r > 0.72) level = 1;
+      if (r > 0.82) level = 2;
+      if (r > 0.90) level = 3;
+      if (r > 0.96) level = 4;
+      if (d > today) level = 0;
+      if (level > 0) { cell.setAttribute('data-level', level); total++; }
+      cell.title = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      week.appendChild(cell);
+      if (day === 0 && d.getDate() <= 7) {
+        monthLabels.push({ week: w, label: d.toLocaleDateString('en-US', { month: 'short' }) });
+      }
+      d.setDate(d.getDate() + 1);
+    }
+    heatmap.appendChild(week);
+  }
+
+  /* update stat count */
+  const statEl = document.querySelector('.heatmap-stat');
+  if (statEl) {
+    const span = statEl.querySelector('span');
+    statEl.textContent = total + ' ';
+    if (span) statEl.appendChild(span);
+  }
+
+  const cellW = 15;
+  monthsEl.style.position = 'relative';
+  monthsEl.style.height = '16px';
+  monthLabels.forEach(m => {
+    const span = document.createElement('span');
+    span.className = 'month-label';
+    span.textContent = m.label;
+    span.style.position = 'absolute';
+    span.style.left = (m.week * cellW) + 'px';
+    monthsEl.appendChild(span);
+  });
+}
+
+/* ── PROGRESS BARS ───────────────────────────────────── */
+function animateProgressBars() {
+  document.querySelectorAll('.progress-fill[data-w]').forEach(bar => {
+    bar.style.width = bar.getAttribute('data-w') + '%';
+  });
+}
+
+/* ── NAV SCROLL ──────────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+
+/* ── INIT ────────────────────────────────────────────── */
+applyTheme();
+buildHeatmap();
+setLang(currentLang);
+</script>
+</body>
+</html>
