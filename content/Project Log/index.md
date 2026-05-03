@@ -1,5 +1,5 @@
 ---
-title: Projects
+title: "Төслүүд · Projects · プロジェクト"
 date:
 tags:
 ---

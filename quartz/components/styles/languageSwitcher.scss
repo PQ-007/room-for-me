@@ -1,0 +1,33 @@
+.language-switcher {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  flex-shrink: 0;
+
+  .lang-btn {
+    background: color-mix(in srgb, var(--lightgray) 60%, var(--light));
+    border: 1px solid var(--lightgray);
+    border-radius: 20px;
+    color: var(--darkgray);
+    cursor: pointer;
+    font-family: var(--bodyFont);
+    font-size: 0.75rem;
+    font-weight: 600;
+    height: 1.75rem;
+    min-width: 2.25rem;
+    padding: 0 0.5rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+    &:hover {
+      background: var(--lightgray);
+      border-color: var(--gray);
+      color: var(--dark);
+    }
+
+    &.active {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: var(--light);
+    }
+  }
+}

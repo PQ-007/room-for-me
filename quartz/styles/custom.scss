@@ -1,11 +1,174 @@
 @use "./base.scss";
 
-// put your custom CSS here!
-body {
-  font-family: "Inter", sans-serif;
-  background: #0a0a0f;
-  color: #f8fafc;
+// ---- HOMEPAGE: HERO ----
+.home-hero {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--lightgray);
+  margin-bottom: 2rem;
+
+  .hero-name {
+    font-size: 2.25rem;
+    font-family: var(--headerFont);
+    color: var(--dark);
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .hero-tagline {
+    color: var(--gray);
+    font-size: 1rem;
+    margin: 0.4rem 0 0;
+    line-height: 1.5;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .lang-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: color-mix(in srgb, var(--lightgray) 70%, var(--light));
+    color: var(--darkgray);
+    border: 1px solid var(--lightgray);
+  }
 }
-a {
-  color: #38bdf8;
+
+// ---- HOMEPAGE: LIBRARY GRID ----
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+}
+
+@media (max-width: 800px) {
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.library-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--lightgray);
+  background: color-mix(in srgb, var(--light) 85%, var(--lightgray));
+  text-decoration: none !important;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+
+  &:hover {
+    border-color: var(--secondary);
+    background: var(--highlight);
+    transform: translateY(-2px);
+
+    .card-body h3 {
+      color: var(--secondary);
+    }
+  }
+
+  .card-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    padding-top: 0.15rem;
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--dark);
+      font-family: var(--headerFont);
+      transition: color 0.2s;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.4;
+    }
+  }
+}
+
+// ---- HOMEPAGE: CURRENT FOCUS ----
+.current-focus {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--lightgray);
+
+  h2 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray);
+    margin: 0 0 1rem;
+  }
+
+  .focus-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .focus-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .focus-tag {
+    display: inline-block;
+    min-width: 2.75rem;
+    text-align: center;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    background: color-mix(in srgb, var(--secondary) 15%, transparent);
+    color: var(--secondary);
+    border: 1px solid color-mix(in srgb, var(--secondary) 30%, transparent);
+    flex-shrink: 0;
+  }
+
+  .focus-label {
+    font-size: 0.9rem;
+    color: var(--darkgray);
+    line-height: 1.4;
+  }
+}
+
+// ---- SIDEBAR: CARD PANELS ----
+.right.sidebar .backlinks,
+.right.sidebar .toc {
+  background: color-mix(in srgb, var(--light) 70%, var(--lightgray));
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+
+  h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--gray);
+    margin: 0 0 0.75rem;
+  }
 }

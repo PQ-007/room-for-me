@@ -30,7 +30,7 @@ export default ((opts?: Partial<BacklinksOptions>) => {
     }
     return (
       <div class={classNames(displayClass, "backlinks")}>
-        <h3>{i18n(cfg.locale).components.backlinks.title}</h3>
+        <h3 data-i18n="backlinks.title">{i18n(cfg.locale).components.backlinks.title}</h3>
         <OverflowList>
           {backlinkFiles.length > 0 ? (
             backlinkFiles.map((f) => (
@@ -41,7 +41,7 @@ export default ((opts?: Partial<BacklinksOptions>) => {
               </li>
             ))
           ) : (
-            <li>{i18n(cfg.locale).components.backlinks.noBacklinksFound}</li>
+            <li data-i18n="backlinks.noBacklinksFound">{i18n(cfg.locale).components.backlinks.noBacklinksFound}</li>
           )}
         </OverflowList>
       </div>
