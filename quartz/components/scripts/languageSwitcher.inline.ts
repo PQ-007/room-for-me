@@ -151,20 +151,35 @@ const folderTranslations: Record<string, Record<LangCode, string>> = {
   "Project Log": { mn: "Төслүүд", en: "Projects", ja: "制作物" },
 }
 
-// Cache the original folder name on each Explorer node so language switches
-// can re-translate from the source rather than from a previously translated value.
-function translateExplorerFolders(lang: LangCode) {
+// Cache the original folder name on each translatable element so language
+// switches can re-translate from the source rather than from a previously
+// translated value.
+function translateOne(el: HTMLElement, lang: LangCode) {
+  let key = el.dataset.i18nFolder
+  if (!key) {
+    key = el.textContent?.trim() ?? ""
+    el.dataset.i18nFolder = key
+  }
+  const t = folderTranslations[key]
+  if (t && t[lang]) el.textContent = t[lang]
+}
+
+function translateFolderLabels(lang: LangCode) {
+  // Explorer sidebar folder labels
   document
-    .querySelectorAll<HTMLElement>(".explorer-content .folder-button span")
-    .forEach((span) => {
-      let key = span.dataset.i18nFolder
-      if (!key) {
-        key = span.textContent?.trim() ?? ""
-        span.dataset.i18nFolder = key
-      }
-      const t = folderTranslations[key]
-      if (t && t[lang]) span.textContent = t[lang]
-    })
+    .querySelectorAll<HTMLElement>(".explorer-content .folder-title, .explorer-content .folder-button > span")
+    .forEach((el) => translateOne(el, lang))
+
+  // Breadcrumb folder links
+  document
+    .querySelectorAll<HTMLAnchorElement>(".breadcrumb-element a")
+    .forEach((el) => translateOne(el, lang))
+
+  // Article title on folder index pages
+  const title = document.querySelector<HTMLElement>(".article-title")
+  if (title) translateOne(title, lang)
+
+  // Page-title sidebar (top-left site name) — leave alone (it's "Room For Me")
 }
 
 function applyTranslations(lang: LangCode) {
@@ -189,8 +204,8 @@ function applyTranslations(lang: LangCode) {
     if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key])
   })
 
-  // Explorer folder names — single language at a time, not concatenated
-  translateExplorerFolders(lang)
+  // Folder labels everywhere (Explorer, breadcrumbs, article title) — single language
+  translateFolderLabels(lang)
 
   // Hero name (Latin/Cyrillic swap)
   const latinName = document.getElementById("heroNameLatin")
@@ -225,15 +240,27 @@ function setupLanguageSwitcher() {
     window.addCleanup(() => btn.removeEventListener("click", handler))
   })
 
-  // Explorer is rendered after the nav event when the file tree script runs;
-  // re-translate folders once the explorer mounts.
-  const obs = new MutationObserver(() => {
-    const lang = (localStorage.getItem("preferred-lang") as LangCode | null) ?? savedLang
-    translateExplorerFolders(lang)
-  })
+  // Explorer renders folders client-side after the nav event. Watch for the
+  // first batch of folder buttons and translate them, then disconnect so we
+  // don't loop on our own textContent writes.
   const explorer = document.querySelector(".explorer-content")
-  if (explorer) obs.observe(explorer, { childList: true, subtree: true })
-  window.addCleanup(() => obs.disconnect())
+  if (explorer) {
+    const obs = new MutationObserver((mutations) => {
+      const sawNewFolder = mutations.some((m) =>
+        Array.from(m.addedNodes).some(
+          (n) =>
+            n instanceof Element &&
+            (n.querySelector?.(".folder-button") || n.classList?.contains("folder-button")),
+        ),
+      )
+      if (sawNewFolder) {
+        const lang = (localStorage.getItem("preferred-lang") as LangCode | null) ?? savedLang
+        translateFolderLabels(lang)
+      }
+    })
+    obs.observe(explorer, { childList: true, subtree: true })
+    window.addCleanup(() => obs.disconnect())
+  }
 }
 
 document.addEventListener("nav", () => setupLanguageSwitcher())

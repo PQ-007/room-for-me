@@ -4,7 +4,9 @@
       "Bash(mkdir -p /tmp/design2)",
       "Bash(zcat /tmp/design2.bin)",
       "Bash(tar -x -C /tmp/design2)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "Bash(grep -oE 'library-grid[^<]{0,3000}' /home/bilguunpq/Projects/web-dev/room-for-me/public/index.html)",
+      "Bash(awk '/library-grid/,/Fl4shc4rd diploma/' /home/bilguunpq/Projects/web-dev/room-for-me/public/index.html)"
     ]
   }
 }
