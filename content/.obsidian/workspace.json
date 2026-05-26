@@ -1,0 +1,263 @@
+{
+  "main": {
+    "id": "581bca3459c07bc8",
+    "type": "split",
+    "children": [
+      {
+        "id": "064f17d90efd0f60",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b867440c9d2ec83b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Дүгнэлтүүд/2025 оны дүгнэлт.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2025 оны дүгнэлт"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "df531590e766357c",
+    "type": "split",
+    "children": [
+      {
+        "id": "0a38e08ca661e785",
+        "type": "tabs",
+        "dimension": 68.02575107296137,
+        "children": [
+          {
+            "id": "f7c75d57d17b332a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "35e9a01fe37a6a80",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "5476127588aa499e",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ff85e5b81a92ea37",
+        "type": "tabs",
+        "dimension": 31.97424892703863,
+        "children": [
+          {
+            "id": "beb5db8bed3c4a71",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 382.5
+  },
+  "right": {
+    "id": "877e9b79a63d111e",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea7ba62423b5a95a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "620a39dbc28c7719",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "index.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for index"
+            }
+          },
+          {
+            "id": "a40f297597d5596d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "index.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from index"
+            }
+          },
+          {
+            "id": "dcf72fef7d63c532",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "9d1e941990ac0ce6",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "9344cadbfbf466c0",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "index.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of index"
+            }
+          },
+          {
+            "id": "76c6247ab43b52ab",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 254.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false,
+      "obsidian-excalidraw-plugin:New drawing": false,
+      "omnisearch:Omnisearch": false,
+      "templater-obsidian:Templater": false,
+      "obsidian-kanban:Create new board": false
+    }
+  },
+  "active": "b867440c9d2ec83b",
+  "lastOpenFiles": [
+    "Misc/Images/Talarhal.png",
+    "Дүгнэлтүүд/2025 оны дүгнэлт.md",
+    "Дүгнэлтүүд/2026 оны дүгнэлт.md",
+    "Misc/Images/Pasted image 20260128185536.png",
+    "Misc/Images/Prism.png",
+    "Misc/Images/Pasted.md",
+    "Misc/Images/Matrix Multipication.png",
+    "Misc/Images/Neural Network Example.png",
+    "Misc/Images/NumPy Implementation on NN.png",
+    "Blog/Pasted.md",
+    "Private/Таван жилийн төлөвлөгөө.md",
+    "Private/Random/Сүүлийн үед.md",
+    "Misc/Images/Pasted image 20260526223141.png",
+    "Misc/Images/Pasted image 20260526223029.png",
+    "Misc/Images/Pasted image 20260526222934.png",
+    "Misc/Video/10-даралт.mp4",
+    "Misc/Video",
+    "Misc/Images/Pasted image 20260526221636.png",
+    "Misc/Templates/Year Rewind Template.md",
+    "Хэт амар.md",
+    "Асуулт хариулт (Япон).md",
+    "Private/Асуулт хариулт.md",
+    "Private/長岡技術科学大学 志望調書.md",
+    "Vim cheat sheet.md",
+    "Private/Random",
+    "Private/志望動機.md",
+    "Blog/Sudoku solver and generator.md",
+    "Private/Прогресс/2026/Нийтлэлүүд.md",
+    "Private/Прогресс/2026/Номын тэмдэглэлүүд.md",
+    "Private/Прогресс/2026/Хичээлийн тэмдэглэл.md",
+    "Lesson Note/Япон хэл/N!/文法.md",
+    "Lesson Note/Япон хэл/N!",
+    "index.md.tmp.116167.1777800112534",
+    "Project Log/index.md.tmp.116167.1777799974482",
+    "Lesson Note/index.md.tmp.116167.1777799967934",
+    "Book Note/index.md.tmp.116167.1777799961423",
+    "Blog/index.md.tmp.116167.1777799954391",
+    "index.md.tmp.116167.1777798669803",
+    "Private/Зорилгууд/2026 оны зорилго.md",
+    "Private/Прогресс/2026/Видеонууд.md",
+    "index.md"
+  ]
+}
