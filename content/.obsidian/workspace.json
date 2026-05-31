@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Дүгнэлтүүд/2026 оны дүгнэлт.md",
+                "file": "Blog/Internship №1 Susano.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026 оны дүгнэлт"
+              "title": "Internship №1 Susano"
             }
           }
         ]
@@ -216,11 +216,32 @@
       "obsidian-kanban:Create new board": false
     }
   },
-  "active": "f7c75d57d17b332a",
+  "active": "b867440c9d2ec83b",
   "lastOpenFiles": [
-    "Дүгнэлтүүд/2025 оны дүгнэлт.md",
-    "Misc/Images/Talarhal.png",
+    "Blog/Internship №2 Co-graph.md",
+    "Blog/Search Engine.md",
+    "Blog/Object Oriented Programming.md",
+    "Blog/Devlog №0〔Ivo〕.md",
+    "Blog/Хиймэл оюун хичээлийн явцын шалгалт.md",
+    "Blog/Математик ба компьютер.md",
+    "Blog/Sudoku solver and generator.md",
+    "Blog/Internship №3 Tokyo System House.md",
+    "Blog/Internship №0 ALTEN Japan.md",
+    "Blog/Internship №1 Susano.md",
     "Дүгнэлтүүд/2026 оны дүгнэлт.md",
+    "Дүгнэлтүүд/2025 оны дүгнэлт.md",
+    "Private/Таван жилийн төлөвлөгөө.md",
+    "Private/Зорилгууд/2026 оны зорилго.md",
+    "Private/Nyuugaku/Асуулт хариулт.md",
+    "Private/Nyuugaku/Асуулт хариулт (Япон).md",
+    "Private/Nyuugaku/長岡技術科学大学 志望調書.md",
+    "Private/Nyuugaku",
+    "Private/Nyuugaku/志望動機.md",
+    "Private/Прогресс/2026/Хичээлийн тэмдэглэл.md",
+    "Private/Прогресс/2026/Номын тэмдэглэлүүд.md",
+    "Private/Прогресс/2026/Видеонууд.md",
+    "Private/Прогресс/2026/Нийтлэлүүд.md",
+    "Misc/Images/Talarhal.png",
     "Misc/Images/Pasted image 20260128185536.png",
     "Misc/Images/Prism.png",
     "Misc/Images/Pasted.md",
@@ -228,7 +249,6 @@
     "Misc/Images/Neural Network Example.png",
     "Misc/Images/NumPy Implementation on NN.png",
     "Blog/Pasted.md",
-    "Private/Таван жилийн төлөвлөгөө.md",
     "Private/Random/Сүүлийн үед.md",
     "Misc/Images/N2res.png",
     "Misc/Images/Pasted image 20260526223029.png",
@@ -237,27 +257,12 @@
     "Misc/Video",
     "Misc/Images/Pasted image 20260526221636.png",
     "Misc/Templates/Year Rewind Template.md",
-    "Хэт амар.md",
-    "Асуулт хариулт (Япон).md",
-    "Private/Асуулт хариулт.md",
-    "Private/長岡技術科学大学 志望調書.md",
-    "Vim cheat sheet.md",
     "Private/Random",
-    "Private/志望動機.md",
-    "Blog/Sudoku solver and generator.md",
-    "Private/Прогресс/2026/Нийтлэлүүд.md",
-    "Private/Прогресс/2026/Номын тэмдэглэлүүд.md",
-    "Private/Прогресс/2026/Хичээлийн тэмдэглэл.md",
-    "Lesson Note/Япон хэл/N!/文法.md",
     "Lesson Note/Япон хэл/N!",
     "index.md.tmp.116167.1777800112534",
     "Project Log/index.md.tmp.116167.1777799974482",
     "Lesson Note/index.md.tmp.116167.1777799967934",
     "Book Note/index.md.tmp.116167.1777799961423",
-    "Blog/index.md.tmp.116167.1777799954391",
-    "index.md.tmp.116167.1777798669803",
-    "Private/Зорилгууд/2026 оны зорилго.md",
-    "Private/Прогресс/2026/Видеонууд.md",
-    "index.md"
+    "Blog/index.md.tmp.116167.1777799954391"
   ]
 }
