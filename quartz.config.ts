@@ -17,7 +17,14 @@ const config: QuartzConfig = {
     },
     locale: "mn-MN",
     baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["Private", "Misc", "Excalidraw", ".obsidian", ".trash", "**/*.excalidraw.md"],
+    ignorePatterns: [
+      "Private",
+      "Misc/**/*.md",
+      "Excalidraw",
+      ".obsidian",
+      ".trash",
+      "**/*.excalidraw.md",
+    ],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
